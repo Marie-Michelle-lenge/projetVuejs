@@ -35,6 +35,10 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+
+  created() {
+    console.log('Helloworld component');
   }
 }
 </script>
