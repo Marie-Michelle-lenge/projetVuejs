@@ -1,23 +1,21 @@
 <template>
   <div class="home">
-    <!-- <restaurantRow></restaurantRow> -->
-    <HelloWorld/>
-    hello world
+    <div class="head">
+      
+    </div>
+    <restaurantRow v-for="(data, i) in data_restaurant " :key="i" :three_restaurant="data"/>
   </div>
 </template>
 
 <script>
 
   import BDD from '../BDD'
-  import {onMounted} from 'vue'
-  // import RestaurantRow from '@/components/restaurantRow';
-  import HelloWorld from '../components/HelloWorld.vue';
-  console.log(HelloWorld);
+  import {onMounted, ref} from 'vue'
+  import RestaurantRow from '@/components/restaurantRow';
 export default {
     name: 'homePage',
-    Components: {
-      // RestaurantRow,
-      HelloWorld
+    components: {
+      RestaurantRow,
     },
   setup (){
     class Restaurant {
@@ -28,7 +26,7 @@ export default {
           this.drive_time= drive_time
       }
     }
-    let data_restaurant =[]
+    let data_restaurant = ref([]);
   const makeDataRestaurant = () => {
     let three_restaurant = [];
 
@@ -38,7 +36,7 @@ export default {
      
     if (three_restaurant.length ===2){
       three_restaurant.push(new_restaurant);
-      data_restaurant.push(three_restaurant);
+      data_restaurant.value.push(three_restaurant);
       three_restaurant=[];
     }else{
       three_restaurant.push(new_restaurant)
@@ -48,6 +46,9 @@ export default {
   }
 
 onMounted(makeDataRestaurant);
+return {
+  data_restaurant,
+}
 },
 }
 </script>

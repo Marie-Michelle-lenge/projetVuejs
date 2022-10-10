@@ -1,10 +1,11 @@
 <template>
-  <div class="restaurant--">
+  <div class="restaurant--row">
     <h2 class="title">
         nos restaurants
+       
     </h2>
     <div class="wrapper--card">
-        <restaurant-card v-for="(card,index) in 3" :key="index"/>
+        <restaurant-card v-for="(card,index) in three_restaurant" :info_restaurant="card" :key="index"/>
     </div>
   </div>
 </template>
@@ -16,8 +17,8 @@ export default {
     components:{
         restaurantCard,
     },
-    created(){
-        console.log('I\'am a restaurant component');
+    props: {
+        three_restaurant: Array
     }
 }
 </script>
@@ -29,7 +30,6 @@ export default {
             align-items: center;
             justify-content: space-between;
             border:100px;
-            border-block-color: red;
         }
     }
 
